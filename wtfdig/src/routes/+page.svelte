@@ -43,6 +43,7 @@
 						<RadioItem bind:group={stratName} name="stratName" value={'raidplan'}>Raidplan (Aurelia/wfJ/o1Z)</RadioItem>
 						<RadioItem bind:group={stratName} name="stratName" value={'codcar'}>CODCAR</RadioItem>
 						<RadioItem bind:group={stratName} name="stratName" value={'healerout'}>HealerOut</RadioItem>
+						<RadioItem bind:group={stratName} name="stratName" value={'idyll'}>Idyll/game8</RadioItem>
 					</RadioGroup>
 				</div>
 				<div>
@@ -78,6 +79,8 @@
 					<img style:max-height={'400px'} src={'./strats/codcar/overall.png'} />
 				{:else if stratPackage?.stratName === 'healerout'}
 					<img style:max-height={'400px'} src={'./strats/healerout/overall.png'} />
+				{:else if stratPackage?.stratName === 'idyll'}
+					<img style:max-height={'400px'} src={'./strats/idyll/overall.png'} />
 				{/if}
 			</div>
 		</div>
@@ -91,12 +94,22 @@
 		{:else}
 			<div class="flex flex-wrap items-center gap-2">
 				<div class="content-center">
-					{#if stratPackage?.stratUrl}
+					{#if typeof stratPackage?.stratUrl === 'string'}
 						<a class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer" href={stratPackage.stratUrl}>{stratPackage.description}
 							<svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
 								<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
 							</svg>
 						</a>
+					{:else if typeof stratPackage?.stratUrl === 'object'}
+						{stratPackage.description}
+						{#each Object.entries(stratPackage.stratUrl) as [linkName, linkUrl]}
+							&nbsp;
+							<a class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer" href={linkUrl}>{linkName}
+								<svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+									<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+								</svg>
+							</a>
+						{/each}
 					{/if}
 				</div>
 				<div class="grow"></div>
@@ -117,12 +130,12 @@
 				{/if}
 			</div>
 			
-			<div class="grid xl:grid-cols-7 grid-cols-3 gap-2">
+			<div class="grid xl:grid-cols-6 grid-cols-3 gap-2">
 				{#each strat.strats as step}
 					{#key [spotlight, alignment]}
 					<div class="space-y-4" class:col-span-2={step.alignmentImages && step.alignmentImages[alignment]}>
 						<div class="uppercase text-xl">{step.mechanic}</div> 
-						<div class="whitespace-pre text-l">{step.description}</div>
+						<div class="whitespace-pre-wrap text-l">{step.description}</div>
 						<img src={(step.alignmentImages && step.alignmentImages[alignment]) ? step.alignmentImages[alignment] : step.imageUrl} style:mask-image={getMask(step)} style:transform={step.alignmentTransforms ? step.alignmentTransforms[alignment] : step.transform} />
 					</div>
 					{/key}
@@ -146,7 +159,7 @@
 											{#key [spotlight, alignment]}
 											<div class="space-y-4" class:col-span-2={step.alignmentImages && step.alignmentImages[alignment]}>
 												<div class="uppercase text-xl">{step.mechanic}</div> 
-												<div class="whitespace-pre text-l">{step.description}</div>
+												<div class="whitespace-pre-wrap text-l">{step.description}</div>
 												<img src={(step.alignmentImages && step.alignmentImages[alignment]) ? step.alignmentImages[alignment] : step.imageUrl} style:mask-image={getMask(step)} style:transform={step.alignmentTransforms ? step.alignmentTransforms[alignment] : step.transform} />
 											</div>
 											{/key}
