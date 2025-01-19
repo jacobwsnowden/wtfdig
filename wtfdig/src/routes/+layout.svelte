@@ -54,7 +54,6 @@
         </div>
         <div class="text-sm text-gray-500 dark:text-gray-400 text-end">
             <div>Made by Mara Kaminagi @ Adamantoise</div>
-            <div>You can find me on <a target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-500 hover:underline" href="https://bsky.app/profile/shittyidiot.com">Bluesky</a> or <a target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-500 hover:underline" href="https://x.com/mczub">Twitter</a></div>
             <div>Edits by Jake Hale @ Louisoux</div>
         </div>
     </div>
