@@ -56,7 +56,6 @@
         </div>
         <div class="text-sm text-gray-500 dark:text-gray-400 text-end">
             <div>Made by Mara Kaminagi @ Adamantoise</div>
-            <div>Edits by Jake Hale @ Louisoux</div>
         </div>
     </div>
 </footer>
